@@ -1,0 +1,41 @@
+/*
+*  Styles for the coverPop.js plugin
+*/
+
+html,
+body {
+    height: 100%;
+    overflow: auto;
+}
+
+body {
+    position: relative;
+}
+
+.coverPop-open {
+    height: 100%;
+    overflow: hidden;
+}
+
+    .splash-up body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+.coverPop-cover {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+}
+
+    .coverPop-content {
+        width: 50%;  /* set a width */
+        background: #fff;
+        margin: 10% auto;
+    }
