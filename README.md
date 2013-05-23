@@ -1,6 +1,6 @@
 # coverPop.js
 
-coverPop.js is a jQuery plugin to set up a fullscreen popup overlay on an initial visit and hide it for a set period of time.
+coverPop.js is a jQuery plugin to set up a fullscreen popup overlay on a visitor's initial visit and hide for a set period of time.
 
 Uses jQuery.
 
@@ -8,7 +8,7 @@ Uses jQuery.
 
 Include it:
 
-```javascript
+```html
 <script src="js/jquery.coverPop.js"></script>
 ```
 
