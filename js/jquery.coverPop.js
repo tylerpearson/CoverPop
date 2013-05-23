@@ -17,8 +17,8 @@
         ,   fadeOutDuration:   500                    // time (in milliseconds) to fade out
         ,   expires:           30                     // hiding expires after # of days
         ,   jsCenter:          false                  // if we want the plugin to center the middle box with js (nasty and unrecommended)
-        ,   closeClass:        "coverPop-close"       // close if someone clicks this
-        ,   cookieName:        "coverPop"
+        ,   closeClass:        "coverPop-close"       // close if someone clicks an element with this class
+        ,   cookieName:        "coverPop"             // to change the plugin cookie name
         ,   onPopUpOpen:       function() {}          // on popup open / default is nothing
         ,   onPopUpClose:      function() {}          // on popup close / default is nothing
         ,   info:              false                  // toggle console.log statements
@@ -136,7 +136,6 @@
 
         });
 
-
         // test if it's a function (from underscore)
         function isFunction(functionToCheck) {
             var getType = {};
@@ -166,7 +165,6 @@
 
         }
 
-
         // check cookie exists and isn't expired
         function checkCookie() {
 
@@ -176,7 +174,6 @@
             // if the cookie doesn't exist
             return false;
         }
-
 
     };
 
