@@ -6,9 +6,16 @@ Uses jQuery.
 
 ## Usage
 
-Include it:
+Include the plugin css file:
 
 ```html
+<link rel="stylesheet" href="css/coverPop.css">
+```
+
+Include jQuery and the plugin:
+
+```html
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="js/jquery.coverPop.js"></script>
 ```
 
