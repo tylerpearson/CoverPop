@@ -4,6 +4,10 @@ coverPop.js is a jQuery plugin to set up a fullscreen popup overlay on a visitor
 
 Uses jQuery.
 
+## Example
+
+![Example GIF](https://dl.dropboxusercontent.com/u/9008516/Screencast-2013.05.22-21.57.gif)
+
 ## Usage
 
 Include the plugin css file:
