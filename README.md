@@ -45,9 +45,15 @@ $(document).coverPop({
     cookieName:        "coverPop",             // to change the plugin cookie name
     onPopUpOpen:       function() {},          // on popup open
     onPopUpClose:      function() {},          // on popup close
+    forceHash:         'splash',               // add to url to force display of popup (e.g. http://yourdomain.com/welcome#splash)
     info:              false                   // toggle console.log statements
 });
 ```
+
+## Updates
+
+* v1.0.1 - Add ability to force the popup by adding a hash to the url
+
 
 ### License
 

@@ -1,4 +1,4 @@
-// coverPop v1 - jQuery Plugin
+// coverPop v1.0.1 - jQuery Plugin
 // License: http://www.opensource.org/licenses/mit-license.php
 // To use: $(document).coverPop()
 // Will set up a full page popup cover overlay and hide for a set period of time
@@ -21,6 +21,7 @@
         ,   cookieName:        "coverPop"             // to change the plugin cookie name
         ,   onPopUpOpen:       function() {}          // on popup open / default is nothing
         ,   onPopUpClose:      function() {}          // on popup close / default is nothing
+        ,   forceHash:         'splash'               // add to url to force display of popup
         ,   info:              false                  // toggle console.log statements
         };
 
@@ -86,22 +87,18 @@
                 }
 
 
-                // check if there is a cookie before proceeding
-                if (checkCookie() !== true) {
+                // add open class to html
+                html.addClass("coverPop-open");
+                cover.fadeIn(settings.fadeInDuration, openCallback);
 
-                    // add open class to html
-                    html.addClass("coverPop-open");
-                    cover.fadeIn(settings.fadeInDuration, openCallback);
-
-                    // bind close events
-                    if (settings.closeClass.length) {
-                        $('.' + settings.closeClass).on('click', function(e) {
-                              e.preventDefault();
-                              closePopUp();
-                        });
-                    }
-
+                // bind close events
+                if (settings.closeClass.length) {
+                    $('.' + settings.closeClass).on('click', function(e) {
+                        e.preventDefault();
+                        closePopUp();
+                    });
                 }
+
 
             }
 
@@ -131,8 +128,14 @@
 
             }
 
-            // start when called
-            openPopUp();
+
+            // check if there is a cookie or hash before proceeding
+            if (checkCookie() === false || checkHash() === true) {
+
+                // start
+                openPopUp();
+
+            }
 
         });
 
@@ -173,6 +176,18 @@
 
             // if the cookie doesn't exist
             return false;
+        }
+
+
+        // check if there is a hash in the url
+        function checkHash() {
+
+            // check for hash
+            if (window.location.hash.indexOf(settings.forceHash) !== -1) return true;
+
+            // if there isn't a hash
+            return false;
+
         }
 
     };
