@@ -15,7 +15,7 @@
         ,   contentClass:      'coverPop-content'     // set default content class
         ,   fadeInDuration:    500                    // time (in milliseconds) to fade in
         ,   fadeOutDuration:   500                    // time (in milliseconds) to fade out
-        ,   expires:           30                     // hiding expires after # of days
+        ,   expires:           30                     // duration (in days) before it pops up again
         ,   jsCenter:          false                  // if we want the plugin to center the middle box with js (nasty and unrecommended)
         ,   closeClass:        "coverPop-close"       // close if someone clicks an element with this class
         ,   cookieName:        "coverPop"             // to change the plugin cookie name
@@ -46,7 +46,7 @@
                 ,   windowWidth    = $(window).width()
                 ,   windowHeight   = $(window).height();
 
-                shareInfo("content height: " + contentHeight + ", content height: " + contentWidth);
+                shareInfo("content height: " + contentHeight + ", content width: " + contentWidth);
 
                 element.css({
                     "position" : "absolute",
@@ -141,15 +141,19 @@
 
         // test if it's a function (from underscore)
         function isFunction(functionToCheck) {
+
             var getType = {};
             return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+
         }
 
         // for info and debugging
         function shareInfo(message) {
+
             if ( window.console && window.console.log && settings.info ) {
                 window.console.log(message);
             }
+
         }
 
         // function for setting cookie

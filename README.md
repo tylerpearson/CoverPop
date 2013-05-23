@@ -1,8 +1,8 @@
 # coverPop.js
 
-coverPop.js is a jQuery plugin to set up a fullscreen popup overlay on a visitor's initial visit and hide for a set period of time.
+**coverPop.js** is a lightweight (but customizable) jQuery plugin to set a fullscreen popup overlay on a visitor's initial visit and hide for a set period of time.
 
-Uses jQuery.
+Since styling is handled through CSS, **coverPop.js** integrates well with responsive sites.
 
 ## Example
 
@@ -10,13 +10,17 @@ Uses jQuery.
 
 ## Usage
 
+### CSS
+
 Include the plugin css file:
 
 ```html
 <link rel="stylesheet" href="css/coverPop.css">
 ```
 
-Include jQuery and the plugin:
+### JS
+
+Include jQuery and the plugin js:
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -26,12 +30,10 @@ Include jQuery and the plugin:
 Start it with the default settings:
 
 ```javascript
-$(document).ready(function() {
-    $(document).coverPop();
-});
+$(document).coverPop();
 ```
 
-Customize it:
+**coverPop.js** can has the ability to customized:
 
 ```javascript
 $(document).coverPop({
@@ -39,15 +41,45 @@ $(document).coverPop({
     contentClass:      'coverPop-content',     // set default content class
     fadeInDuration:    500,                    // time (in milliseconds) to fade in
     fadeOutDuration:   500,                    // time (in milliseconds) to fade out
-    expires:           30,                     // hide for this # of days
+    expires:           30,                     // duration (in days) before it pops up again
     jsCenter:          false,                  // if we want the plugin to center the middle box with js (nasty and unrecommended)
     closeClass:        "coverPop-close",       // close if someone clicks an element with this class
     cookieName:        "coverPop",             // to change the plugin cookie name
     onPopUpOpen:       function() {},          // on popup open
     onPopUpClose:      function() {},          // on popup close
-    forceHash:         'splash',               // add to url to force display of popup (e.g. http://yourdomain.com/welcome#splash)
+    forceHash:         'splash',               // add to url to force display of popup (e.g. http://yourdomain.com/#splash) Useful for styling
     info:              false                   // toggle console.log statements
 });
+```
+
+### HTML
+
+`.coverPop-cover` is used on the full screen cover. `.coverPop-content` is used for the content of the popup.
+
+By default, a click on any element with `.coverPop-close` will close the popup.
+
+```html
+<body>
+
+
+  <!-- your site's markup -->
+
+
+  <!-- start popup -->
+  <div class="coverPop-cover splash">
+      <div class="coverPop-content splash-center">
+
+          <!-- the popup content (form, welcome message, etc.) -->
+
+          <a class="coverPop-close" href="#">or skip signup</a>
+
+      </div><!--end .splash-center -->
+  </div><!--end .splash -->
+  <!-- end popup -->
+
+  <!-- js, etc. -->
+
+</body>
 ```
 
 ## Updates
