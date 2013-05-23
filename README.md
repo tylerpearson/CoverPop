@@ -48,7 +48,7 @@ $(document).coverPop({
     onPopUpOpen:       function() {},          // on popup open
     onPopUpClose:      function() {},          // on popup close
     forceHash:         'splash',               // add to url to force display of popup (e.g. http://yourdomain.com/#splash)
-    closeOnEscape:     true                    // close if the user clicks escape
+    closeOnEscape:     true,                   // close if the user clicks escape
     info:              false                   // toggle console.log statements
 });
 ```
