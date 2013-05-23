@@ -47,16 +47,17 @@ $(document).coverPop({
     cookieName:        "coverPop",             // to change the plugin cookie name
     onPopUpOpen:       function() {},          // on popup open
     onPopUpClose:      function() {},          // on popup close
-    forceHash:         'splash',               // add to url to force display of popup (e.g. http://yourdomain.com/#splash) Useful for styling
+    forceHash:         'splash',               // add to url to force display of popup (e.g. http://yourdomain.com/#splash)
+    closeOnEscape:     true                    // close if the user clicks escape
     info:              false                   // toggle console.log statements
 });
 ```
 
 ### HTML
 
-`.coverPop-cover` is used on the full screen cover. `.coverPop-content` is used for the content of the popup.
+`.coverPop-cover` is used on the full window cover. `.coverPop-content` is used for the content of the popup.
 
-By default, a click on any element with `.coverPop-close` will close the popup.
+By default, a click on any element with `.coverPop-close` will close the popup. The plugin adds `preventDefault()` to elements with this class.
 
 ```html
 <body>
@@ -84,7 +85,8 @@ By default, a click on any element with `.coverPop-close` will close the popup.
 
 ## Updates
 
-* v1.0.1 - Add ability to force the popup by adding a hash to the url
+* v1.0.2 - Add option to close popup by hitting escape *(5/23/2013)*
+* v1.0.1 - Add ability to force the popup by adding a hash to the url *(5/22/2013)*
 
 
 ### License

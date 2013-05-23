@@ -1,4 +1,4 @@
-// coverPop v1.0.1 - jQuery Plugin
+// coverPop v1.0.2 - jQuery Plugin
 // License: http://www.opensource.org/licenses/mit-license.php
 // To use: $(document).coverPop()
 // Will set up a full page popup cover overlay and hide for a set period of time
@@ -22,6 +22,7 @@
         ,   onPopUpOpen:       function() {}          // on popup open / default is nothing
         ,   onPopUpClose:      function() {}          // on popup close / default is nothing
         ,   forceHash:         'splash'               // add to url to force display of popup
+        ,   closeOnEscape:     true                   // close if the user clicks escape
         ,   info:              false                  // toggle console.log statements
         };
 
@@ -100,6 +101,10 @@
                 }
 
 
+                // bind escape detection to document
+                $(document).bind('keyup', onDocUp);
+
+
             }
 
             // close the cover popup
@@ -126,6 +131,9 @@
                 // set the cookie so we don't keep seeing the popup
                 setCookie();
 
+                // unbind escape detection to document
+                $(document).unbind('keyup', onDocUp);
+
             }
 
 
@@ -136,6 +144,23 @@
                 openPopUp();
 
             }
+
+
+            // close popup when user hits escape button
+            function onDocUp(e) {
+
+                // if set to close on escape
+                if (settings.closeOnEscape) {
+
+                    // check the keycode
+                    if (e.keyCode === 27) {
+
+                        // close it
+                        closePopUp();
+                    }
+                }
+            }
+
 
         });
 
