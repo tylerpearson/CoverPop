@@ -89,6 +89,6 @@ By default, a click on any element with `.coverPop-close` will close the popup. 
 * v1.0.1 - Add ability to force the popup by adding a hash to the url *(5/22/2013)*
 
 
-### License
+## License
 
 MIT

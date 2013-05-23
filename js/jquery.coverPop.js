@@ -94,16 +94,14 @@
 
                 // bind close events
                 if (settings.closeClass.length) {
-                    $('.' + settings.closeClass).on('click', function(e) {
+                    $(document).on('click', '.' + settings.closeClass, function(e) {
                         e.preventDefault();
                         closePopUp();
                     });
                 }
 
-
                 // bind escape detection to document
                 $(document).bind('keyup', onDocUp);
-
 
             }
 
