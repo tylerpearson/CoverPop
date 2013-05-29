@@ -60,6 +60,8 @@ $(document).coverPop({
 
 By default, a click on any element with `.coverPop-close` will close the popup. The plugin adds `preventDefault()` to elements with this class.
 
+If you wish to continue with the default action, but also hide the popup, add `.coverPop-close-go`. This is particularly useful for form submissions.
+
 ```html
 <body>
 
