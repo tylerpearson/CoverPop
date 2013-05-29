@@ -11,19 +11,20 @@
 
         // set default plugin settings
         var settings = {
-            coverClass:        'coverPop-cover'       // set default cover class
-        ,   contentClass:      'coverPop-content'     // set default content class
-        ,   fadeInDuration:    500                    // time (in milliseconds) to fade in
-        ,   fadeOutDuration:   500                    // time (in milliseconds) to fade out
-        ,   expires:           30                     // duration (in days) before it pops up again
-        ,   jsCenter:          false                  // if we want the plugin to center the middle box with js (nasty and unrecommended)
-        ,   closeClass:        "coverPop-close"       // close if someone clicks an element with this class
-        ,   cookieName:        "coverPop"             // to change the plugin cookie name
-        ,   onPopUpOpen:       function() {}          // on popup open / default is nothing
-        ,   onPopUpClose:      function() {}          // on popup close / default is nothing
-        ,   forceHash:         'splash'               // add to url to force display of popup
-        ,   closeOnEscape:     true                   // close if the user clicks escape
-        ,   info:              false                  // toggle console.log statements
+            coverClass:          'coverPop-cover'       // set default cover class
+        ,   contentClass:        'coverPop-content'     // set default content class
+        ,   fadeInDuration:      500                    // time (in milliseconds) to fade in
+        ,   fadeOutDuration:     500                    // time (in milliseconds) to fade out
+        ,   expires:             30                     // duration (in days) before it pops up again
+        ,   jsCenter:            false                  // if we want the plugin to center the middle box with js (nasty and unrecommended)
+        ,   closeClassNoDefault: "coverPop-close"       // close if someone clicks an element with this class and prevent default action
+        ,   closeClassDefault:   "coverPop-close-go"    // close if someone clicks an element with this class and continue default action
+        ,   cookieName:          "coverPop"             // to change the plugin cookie name
+        ,   onPopUpOpen:         function() {}          // on popup open / default is nothing
+        ,   onPopUpClose:        function() {}          // on popup close / default is nothing
+        ,   forceHash:           'splash'               // add to url to force display of popup
+        ,   closeOnEscape:       true                   // close if the user clicks escape
+        ,   info:                false                  // toggle console.log statements
         };
 
         $.extend(settings, options);
@@ -92,10 +93,17 @@
                 html.addClass("coverPop-open");
                 cover.fadeIn(settings.fadeInDuration, openCallback);
 
-                // bind close events
-                if (settings.closeClass.length) {
-                    $(document).on('click', '.' + settings.closeClass, function(e) {
+                // bind close events and prevent default event
+                if (settings.closeClassNoDefault.length) {
+                    $(document).on('click', '.' + settings.closeClassNoDefault, function(e) {
                         e.preventDefault();
+                        closePopUp();
+                    });
+                }
+
+                // bind close events and continue with default event
+                if (settings.closeClassDefault.length) {
+                    $(document).on('click', '.' + settings.closeClassDefault, function(e) {
                         closePopUp();
                     });
                 }

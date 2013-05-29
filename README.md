@@ -37,19 +37,20 @@ $(document).coverPop();
 
 ```javascript
 $(document).coverPop({
-    coverClass:        'coverPop-cover',       // set default cover class
-    contentClass:      'coverPop-content',     // set default content class
-    fadeInDuration:    500,                    // time (in milliseconds) to fade in
-    fadeOutDuration:   500,                    // time (in milliseconds) to fade out
-    expires:           30,                     // duration (in days) before it pops up again
-    jsCenter:          false,                  // if we want the plugin to center the middle box with js (nasty and unrecommended)
-    closeClass:        "coverPop-close",       // close if someone clicks an element with this class
-    cookieName:        "coverPop",             // to change the plugin cookie name
-    onPopUpOpen:       function() {},          // on popup open
-    onPopUpClose:      function() {},          // on popup close
-    forceHash:         'splash',               // add to url to force display of popup (e.g. http://yourdomain.com/#splash)
-    closeOnEscape:     true,                   // close if the user clicks escape
-    info:              false                   // toggle console.log statements
+    coverClass:          'coverPop-cover',       // set default cover class
+    contentClass:        'coverPop-content',     // set default content class
+    fadeInDuration:      500,                    // time (in milliseconds) to fade in
+    fadeOutDuration:     500,                    // time (in milliseconds) to fade out
+    expires:             30,                     // duration (in days) before it pops up again
+    jsCenter:            false,                  // if we want the plugin to center the middle box with js (nasty and unrecommended)
+    closeClassNoDefault: "coverPop-close",       // close if someone clicks an element with this class and prevent default action
+    closeClassDefault:   "coverPop-close-go",    // close if someone clicks an element with this class and continue default action
+    cookieName:          "coverPop",             // to change the plugin cookie name
+    onPopUpOpen:         function() {},          // on popup open
+    onPopUpClose:        function() {},          // on popup close
+    forceHash:           'splash',               // add to url to force display of popup (e.g. http://yourdomain.com/#splash)
+    closeOnEscape:       true,                   // close if the user clicks escape
+    info:                false                   // toggle console.log statements
 });
 ```
 
@@ -85,6 +86,7 @@ By default, a click on any element with `.coverPop-close` will close the popup. 
 
 ## Updates
 
+* v1.0.3 - Add ability to set a class that still sets a cookie but continues with the default action (useful for submit buttons)
 * v1.0.2 - Add option to close popup by hitting escape *(5/23/2013)*
 * v1.0.1 - Add ability to force the popup by adding a hash to the url *(5/22/2013)*
 
