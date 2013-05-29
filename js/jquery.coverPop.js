@@ -1,4 +1,4 @@
-// coverPop v1.0.2 - jQuery Plugin
+// coverPop v1.0.3 - jQuery Plugin
 // License: http://www.opensource.org/licenses/mit-license.php
 // To use: $(document).coverPop()
 // Will set up a full page popup cover overlay and hide for a set period of time
