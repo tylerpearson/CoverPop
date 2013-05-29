@@ -86,9 +86,9 @@ By default, a click on any element with `.coverPop-close` will close the popup. 
 
 ## Updates
 
-* v1.0.3 - Add ability to set a class that still sets a cookie but continues with the default action (useful for submit buttons)
-* v1.0.2 - Add option to close popup by hitting escape *(5/23/2013)*
-* v1.0.1 - Add ability to force the popup by adding a hash to the url *(5/22/2013)*
+* v1.0.3 - Add ability to set a class that still sets a cookie but continues with the default action (useful for submit buttons) *5/29/2013*
+* v1.0.2 - Add option to close popup by hitting escape *5/23/2013*
+* v1.0.1 - Add ability to force the popup by adding a hash to the url *5/22/2013*
 
 
 ## License
