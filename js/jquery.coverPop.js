@@ -1,4 +1,4 @@
-// coverPop v1.0.3 - jQuery Plugin
+// coverPop v1.0.4 - jQuery Plugin
 // License: http://www.opensource.org/licenses/mit-license.php
 // To use: $(document).coverPop()
 // Will set up a full page popup cover overlay and hide for a set period of time
@@ -22,7 +22,8 @@
         ,   cookieName:          "coverPop"             // to change the plugin cookie name
         ,   onPopUpOpen:         function() {}          // on popup open / default is nothing
         ,   onPopUpClose:        function() {}          // on popup close / default is nothing
-        ,   forceHash:           'splash'               // add to url to force display of popup
+        ,   forceHash:           'splash'               // hash to append to url to force display of popup
+        ,   delayHash:           'go'                   // hash to append to url to delay popup for 1 day
         ,   closeOnEscape:       true                   // close if the user clicks escape
         ,   info:                false                  // toggle console.log statements
         };
@@ -63,6 +64,12 @@
             // open cover popup
             function openPopUp() {
 
+                if (hashExists(delayHash)) {
+                    // set the cookie for a day
+                    setCookie(1);
+                    return;
+                }
+
                 // when the popup opens
                 function openCallback() {
 
@@ -75,7 +82,6 @@
 
                     // if js is centering
                     if (settings.jsCenter) {
-
                         // initial centering
                         centerize(settings.content);
 
@@ -83,7 +89,6 @@
                         $(window).on('resize', function(){
                             centerize(settings.content);
                         });
-
                     }
 
                 }
@@ -110,7 +115,6 @@
 
                 // bind escape detection to document
                 $(document).bind('keyup', onDocUp);
-
             }
 
             // close the cover popup
@@ -121,7 +125,6 @@
 
                 // when the popup closes
                 function closeCallback() {
-
                     // if there is a function callback on close
                     if (isFunction(settings.onPopUpClose)) {
                         settings.onPopUpClose.call(self);
@@ -135,33 +138,21 @@
                 cover.fadeOut(settings.fadeOutDuration, closeCallback);
 
                 // set the cookie so we don't keep seeing the popup
-                setCookie();
+                setCookie(settings.expires);
 
                 // unbind escape detection to document
                 $(document).unbind('keyup', onDocUp);
-
             }
-
 
             // check if there is a cookie or hash before proceeding
-            if (checkCookie() === false || checkHash() === true) {
-
-                // start
+            if (checkCookie() === false || hashExists(settings.forceHash) === true) {
                 openPopUp();
-
             }
-
 
             // close popup when user hits escape button
             function onDocUp(e) {
-
-                // if set to close on escape
                 if (settings.closeOnEscape) {
-
-                    // check the keycode
                     if (e.keyCode === 27) {
-
-                        // close it
                         closePopUp();
                     }
                 }
@@ -170,42 +161,37 @@
 
         });
 
-        // test if it's a function (from underscore)
-        function isFunction(functionToCheck) {
 
+        // test if it's a function
+        function isFunction(functionToCheck) {
             var getType = {};
             return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
 
         }
 
+
         // for info and debugging
         function shareInfo(message) {
-
-            if ( window.console && window.console.log && settings.info ) {
+            if (window.console && window.console.log && settings.info) {
                 window.console.log(message);
             }
-
         }
 
-        // function for setting cookie
-        function setCookie () {
 
-            var date = new Date()
-            ,   days = settings.expires;  // assign the settings expiration amount
+        // function for setting cookie
+        function setCookie(days) {
+            var date = new Date();
 
             // get milliseconds at current time plus number of days
             date.setTime(+ date + (days * 86400000)); //24 * 60 * 60 * 1000
-
-            // set the cookie
-            document.cookie =  settings.cookieName + "=true; expires=" + date.toGMTString() + "; path=/";
+            document.cookie = settings.cookieName + "=true; expires=" + date.toGMTString() + "; path=/";
 
             shareInfo("Cookie " + settings.cookieName + " set for " + days + " days away.");
-
         }
+
 
         // check cookie exists and isn't expired
         function checkCookie() {
-
             // check that the cookie exists
             if (document.cookie.indexOf(settings.cookieName) !== -1) return true;
 
@@ -215,14 +201,12 @@
 
 
         // check if there is a hash in the url
-        function checkHash() {
-
+        function hashExists(hash) {
             // check for hash
-            if (window.location.hash.indexOf(settings.forceHash) !== -1) return true;
+            if (window.location.hash.indexOf(hash) !== -1) return true;
 
             // if there isn't a hash
             return false;
-
         }
 
     };

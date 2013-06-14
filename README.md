@@ -48,7 +48,8 @@ $(document).coverPop({
     cookieName:          "coverPop",             // to change the plugin cookie name
     onPopUpOpen:         function() {},          // on popup open
     onPopUpClose:        function() {},          // on popup close
-    forceHash:           'splash',               // add to url to force display of popup (e.g. http://yourdomain.com/#splash)
+    forceHash:           'splash',               // hash to append to url to force display of popup (e.g. http://yourdomain.com/#splash)
+    delayHash:           'go',                   // hash to append to url to delay popup for 1 day (e.g. http://yourdomain.com/#go)
     closeOnEscape:       true,                   // close if the user clicks escape
     info:                false                   // toggle console.log statements
 });
@@ -88,6 +89,7 @@ If you wish to continue with the default action, but also hide the popup, add `.
 
 ## Updates
 
+* v1.0.4 - Add ability to delay popup by appending a hash to the url *6/13/2013*
 * v1.0.3 - Add ability to set a class that still sets a cookie but continues with the default action (useful for submit buttons) *5/29/2013*
 * v1.0.2 - Add option to close popup by hitting escape *5/23/2013*
 * v1.0.1 - Add ability to force the popup by adding a hash to the url *5/22/2013*
