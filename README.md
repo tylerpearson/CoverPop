@@ -1,8 +1,8 @@
-# coverPop.js
+# coverPop
 
-**coverPop.js** is a lightweight (but customizable) jQuery plugin to set a fullscreen popup overlay on a visitor's initial visit and hide for a set period of time.
+**coverPop** is a JS plugin to set a lightbox-esque fullscreen popup overlay with cookie integration. Uses no images and is almost 100% style agnostic.
 
-Since styling is handled through CSS, **coverPop.js** integrates well with responsive sites.
+Since styling is handled through easily customizable CSS, **coverPop** integrates well with responsive sites because it gets out of the way and you can do as you please.
 
 ## Example
 
@@ -33,7 +33,7 @@ Start it with the default settings:
 $(document).coverPop();
 ```
 
-**coverPop.js** can has the ability to customized:
+**coverPop** can has the ability to customized:
 
 ```javascript
 $(document).coverPop({
