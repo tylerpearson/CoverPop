@@ -34,7 +34,7 @@
         var html    = $('html')
         ,   body    = $('body')
         ,   cover   = $('.' + settings.coverClass)
-        ,   content = $('.' + settings.contentClass)
+        ,   content = $('.' + settings.contentClass);
 
 
         return this.each(function() {
@@ -76,16 +76,11 @@
                     // if there is a function callback on open
                     if (isFunction(settings.onPopUpOpen)) {
                         settings.onPopUpOpen.call(self);
-
                         shareInfo("CoverPop is open.");  // say it's open
                     }
 
-                    // if js is centering
                     if (settings.jsCenter) {
-                        // initial centering
                         centerize(settings.content);
-
-                        // if the window moves centering
                         $(window).on('resize', function(){
                             centerize(settings.content);
                         });
@@ -94,7 +89,6 @@
                 }
 
 
-                // add open class to html
                 html.addClass("coverPop-open");
                 cover.fadeIn(settings.fadeInDuration, openCallback);
 
@@ -120,7 +114,6 @@
             // close the cover popup
             function closePopUp() {
 
-                // add open class to html
                 html.removeClass("coverPop-open");
 
                 // when the popup closes
@@ -133,7 +126,6 @@
                     }
                 }
 
-                // add open class to html
                 html.removeClass("coverPop-open");
                 cover.fadeOut(settings.fadeOutDuration, closeCallback);
 
@@ -166,7 +158,6 @@
         function isFunction(functionToCheck) {
             var getType = {};
             return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
-
         }
 
 
@@ -178,34 +169,25 @@
         }
 
 
-        // function for setting cookie
+        // for setting cookie
         function setCookie(days) {
             var date = new Date();
-
-            // get milliseconds at current time plus number of days
             date.setTime(+ date + (days * 86400000)); //24 * 60 * 60 * 1000
             document.cookie = settings.cookieName + "=true; expires=" + date.toGMTString() + "; path=/";
-
             shareInfo("Cookie " + settings.cookieName + " set for " + days + " days away.");
         }
 
 
         // check cookie exists and isn't expired
         function checkCookie() {
-            // check that the cookie exists
             if (document.cookie.indexOf(settings.cookieName) !== -1) return true;
-
-            // if the cookie doesn't exist
             return false;
         }
 
 
         // check if there is a hash in the url
         function hashExists(hash) {
-            // check for hash
             if (window.location.hash.indexOf(hash) !== -1) return true;
-
-            // if there isn't a hash
             return false;
         }
 
