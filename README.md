@@ -2,6 +2,10 @@
 
 CoverPop is a lightweight lightbox popup plugin with cookie integration. 99.9% style agnostic. Responsive friendly.
 
+## Website
+
+[View Website](http://coverpopjs.com)
+
 ## Demo
 
 [View Demo](http://coverpopjs.com/demo/default)
