@@ -18,7 +18,7 @@ If you are trying to show a colorbox image when someone clicks on an internal li
 
 ## Background
 
-CoverPop is a cleaned-up extrapolation of code we at [New Media Campaigns](http://newmediacampaigns.com) frequently found ourselves using on political campaign websites for email signups with first time visitors. We needed something that was customizable to the point we could use it exactly how we wanted and didn't get in the way.
+CoverPop is an extension of code that [we](http://newmediacampaigns.com "New Media Campaigns") frequently found ourselves using on political campaign websites for email signups with first time visitors. We needed something that was customizable to the point we could use it exactly how we wanted and didn't get in the way.
 
 ## Setup
 
