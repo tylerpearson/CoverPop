@@ -1,8 +1,6 @@
-# coverPop
+# CoverPop
 
-**coverPop** is a JS plugin to set a lightbox-esque fullscreen popup overlay with cookie integration. Uses no images and is almost 100% style agnostic.
-
-Since styling is handled through easily customizable CSS, **coverPop** integrates well with responsive sites because it gets out of the way and you can do as you please.
+CoverPop is a lightweight lightbox popup plugin with cookie integration. 99.9% style agnostic. Responsive friendly.
 
 ## Example
 
@@ -10,42 +8,50 @@ Since styling is handled through easily customizable CSS, **coverPop** integrate
 
 ## Usage
 
+If you are trying to show up a lightbox popup similar first time visitors that is easily styleable and has cookie integration, this is for you.
+
+If you are trying to show a colorbox image when someone clicks on an internal link, this isn't for you.
+
+## Background
+
+CoverPop is a cleaned-up extrapolation of code we at [New Media Campaigns](http://newmediacampaigns.com) frequently found ourselves using on political campaign websites for email signups with first time visitors. We needed something that was customizable to the point we could use it exactly how we wanted and didn't get in the way.
+
+## Setup
+
 ### CSS
 
 Include the plugin css file:
 
 ```html
-<link rel="stylesheet" href="css/coverPop.css">
+<link rel="stylesheet" href="css/CoverPop.css">
 ```
 
 ### JS
 
-Include jQuery and the plugin js:
+CoverPop does use some jQuery, so include it and the `CoverPop.js` file.
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="js/jquery.coverPop.js"></script>
+<script src="js/CoverPop.js"></script>
 ```
 
 Start it with the default settings:
 
 ```javascript
-$(document).coverPop();
+CoverPop.init();
 ```
 
-**coverPop** can has the ability to customized:
+**CoverPop** can be to customized:
 
 ```javascript
-$(document).coverPop({
-    coverClass:          'coverPop-cover',       // set default cover class
-    contentClass:        'coverPop-content',     // set default content class
+CoverPop.init({
+    coverClass:          'CoverPop-cover',       // set default cover class
     fadeInDuration:      500,                    // time (in milliseconds) to fade in
     fadeOutDuration:     500,                    // time (in milliseconds) to fade out
     expires:             30,                     // duration (in days) before it pops up again
-    jsCenter:            false,                  // if we want the plugin to center the middle box with js (nasty and unrecommended)
-    closeClassNoDefault: "coverPop-close",       // close if someone clicks an element with this class and prevent default action
-    closeClassDefault:   "coverPop-close-go",    // close if someone clicks an element with this class and continue default action
-    cookieName:          "coverPop",             // to change the plugin cookie name
+    closeClassNoDefault: 'CoverPop-close',       // close if someone clicks an element with this class and prevent default action
+    closeClassDefault:   'CoverPop-close-go',    // close if someone clicks an element with this class and continue default action
+    cookieName:          'CoverPop',             // to change the plugin cookie name
     onPopUpOpen:         function() {},          // on popup open
     onPopUpClose:        function() {},          // on popup close
     forceHash:           'splash',               // hash to append to url to force display of popup (e.g. http://yourdomain.com/#splash)
@@ -57,11 +63,11 @@ $(document).coverPop({
 
 ### HTML
 
-`.coverPop-cover` is used on the full window cover. `.coverPop-content` is used for the content of the popup.
+`.CoverPop-cover` is used on the full window cover.
 
-By default, a click on any element with `.coverPop-close` will close the popup. The plugin adds `preventDefault()` to elements with this class.
+By default, a click on any element with `.CoverPop-close` will close the popup. The plugin adds jQuery's `preventDefault()` to elements with this class.
 
-If you wish to continue with the default action, but also hide the popup, add `.coverPop-close-go`. This is particularly useful for form submissions that are sent to another page.
+If you wish to continue with the default action, but also hide the popup, add `.CoverPop-close-go`. This is particularly useful for form submissions that are sent to another page.
 
 ```html
 <body>
@@ -71,12 +77,12 @@ If you wish to continue with the default action, but also hide the popup, add `.
 
 
   <!-- start popup -->
-  <div class="coverPop-cover splash">
-      <div class="coverPop-content splash-center">
+  <div class="CoverPop-cover splash">
+      <div class="CoverPop-content splash-center">
 
           <!-- the popup content (form, welcome message, etc.) -->
 
-          <a class="coverPop-close" href="#">or skip signup</a>
+          <a class="CoverPop-close" href="#">or skip signup</a>
 
       </div><!--end .splash-center -->
   </div><!--end .splash -->
@@ -87,8 +93,19 @@ If you wish to continue with the default action, but also hide the popup, add `.
 </body>
 ```
 
+## Examples
+
+See example uses at [www.coverpopjs.com](http://coverpopjs.com).
+
+
 ## Updates
 
+
+* v2.0.0 - Major changes  *6/22/2013*
+  * Major cleanup of the JS.
+  * Removed the option to center with JS.
+  * Namespace has been capitalized to CoverPop
+  * Add [CoverPop site](http://coverpopjs.com) for better docs
 * v1.0.4 - Add ability to delay popup by appending a hash to the url *6/13/2013*
 * v1.0.3 - Add ability to set a class that still sets a cookie but continues with the default action (useful for submit buttons) *5/29/2013*
 * v1.0.2 - Add option to close popup by hitting escape *5/23/2013*

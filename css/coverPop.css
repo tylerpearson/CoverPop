@@ -1,6 +1,5 @@
-/*
-*  Styles for the coverPop.js plugin
-*/
+/* Styles for the CoverPop.js plugin */
+
 
 html,
 body {
@@ -11,7 +10,7 @@ body {
     position: relative;
 }
 
-.coverPop-open {
+.CoverPop-open {
     height: 100%;
     overflow: hidden;
 }
@@ -21,7 +20,7 @@ body {
         overflow: hidden;
     }
 
-.coverPop-cover {
+.CoverPop-cover {
     display: none;
     position: fixed;
     left: 0;
@@ -31,6 +30,6 @@ body {
     z-index: 1000;
 }
 
-    .coverPop-content {
+    .CoverPop-content {
 
     }

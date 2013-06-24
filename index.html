@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>coverPop.js example page</title>
+  <title>CoverPop.js example page</title>
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/coverPop.css">
+  <link rel="stylesheet" href="css/CoverPop.css">
   <link rel="stylesheet" href="css/styles.css">
 
   <!--[if lt IE 9]>
@@ -134,8 +134,8 @@
 <!-- start popup -->
 
 
-<div class="coverPop-cover splash">
-    <div class="coverPop-content splash-center">
+<div class="CoverPop-cover splash">
+    <div class="CoverPop-content splash-center">
 
         <h2 class="splash-title">Join Johnny Boy</h2>
 
@@ -144,10 +144,10 @@
         <form class="signup signup-splash" method="post" accept-charset="utf-8">
             <input type="email" class="email-input input-text" required placeholder="email address*" name="email">
             <input type="text" maxlength="5" minlength="5" required class="zip-input input-text" pattern="[0-9]*" placeholder="zip code*" name="zip">
-            <input type="submit" value="I Agree" class="submit-button coverPop-close-go">
+            <input type="submit" value="I Agree" class="submit-button CoverPop-close-go">
         </form><!--end .signup -->
 
-        <p class="close-splash"><a class="coverPop-close" href="#">or skip signup</a></p>
+        <p class="close-splash"><a class="CoverPop-close" href="#">or skip signup</a></p>
 
     </div><!--end .splash-center -->
 </div><!--end .splash -->
@@ -155,11 +155,9 @@
 <!-- end popup -->
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="js/jquery.coverPop.js"></script>
+<script src="js/CoverPop.js"></script>
 <script>
-    $(document).ready(function() {
-        $(document).coverPop();
-    });
+    CoverPop.init();
 </script>
 </body>
 </html>
