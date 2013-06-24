@@ -31,7 +31,7 @@ Include the plugin css file:
 CoverPop does use some jQuery, so include it and the `CoverPop.js` file.
 
 ```html
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="js/CoverPop.js"></script>
 ```
 
