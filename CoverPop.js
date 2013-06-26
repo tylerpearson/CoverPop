@@ -1,58 +1,58 @@
 (function ($, CoverPop, undefined) {
 
+    'use strict';
+
     // set default settings
     var settings = {
-        coverClass:          'CoverPop-cover',       // set default cover class
-        fadeInDuration:      500,                    // time (in milliseconds) to fade in
-        fadeOutDuration:     500,                    // time (in milliseconds) to fade out
-        expires:             30,                     // duration (in days) before it pops up again
-        closeClassNoDefault: 'CoverPop-close',       // close if someone clicks an element with this class and prevent default action
-        closeClassDefault:   'CoverPop-close-go',    // close if someone clicks an element with this class and continue default action
-        cookieName:          'CoverPop',             // to change the plugin cookie name
-        onPopUpOpen:         function() {},          // on popup open / default is nothing
-        onPopUpClose:        function() {},          // on popup close / default is nothing
-        forceHash:           'splash',               // hash to append to url to force display of popup
-        delayHash:           'go',                   // hash to append to url to delay popup for 1 day
-        closeOnEscape:       true,                   // close if the user clicks escape
-        info:                false                   // toggle console.log statements
-    };
+            coverClass:          'CoverPop-cover',       // set default cover class
+            fadeInDuration:      500,                    // time (in milliseconds) to fade in
+            fadeOutDuration:     500,                    // time (in milliseconds) to fade out
+            expires:             30,                     // duration (in days) before it pops up again
+            closeClassNoDefault: 'CoverPop-close',       // close if someone clicks an element with this class and prevent default action
+            closeClassDefault:   'CoverPop-close-go',    // close if someone clicks an element with this class and continue default action
+            cookieName:          'CoverPop',             // to change the plugin cookie name
+            onPopUpOpen:         function() {},          // on popup open / default is nothing
+            onPopUpClose:        function() {},          // on popup close / default is nothing
+            forceHash:           'splash',               // hash to append to url to force display of popup
+            delayHash:           'go',                   // hash to append to url to delay popup for 1 day
+            closeOnEscape:       true,                   // close if the user clicks escape
+            info:                false                   // toggle console.log statements
+        },
 
-
-    var el = {
-        $html: $('html'),
-        $cover: $('.' + settings.coverClass)
-    };
-
+        el = {
+            $html: $('html'),
+            $cover: $('.' + settings.coverClass)
+        },
 
 
 
-    /* Private
-    -------------------------------------------------------*/
+        /* Private
+        -------------------------------------------------------*/
 
-    var openCallback = function() {
-        if (isFunction(settings.onPopUpOpen)) {
-            settings.onPopUpOpen.call(self);
-            shareInfo('CoverPop is open.');
-        }
-    };
-
-
-    // close popup when user hits escape button
-    var onDocUp = function(e) {
-        if (settings.closeOnEscape) {
-            if (e.keyCode === 27) {
-                closePopUp();
+        openCallback = function() {
+            if (isFunction(settings.onPopUpOpen)) {
+                settings.onPopUpOpen.call();
+                shareInfo('CoverPop is open.');
             }
-        }
-    };
+        },
 
 
-    var closeCallback = function() {
-        if (isFunction(settings.onPopUpClose)) {
-            settings.onPopUpClose.call(self);
-            shareInfo('CoverPop is closed.');
-        }
-    };
+        // close popup when user hits escape button
+        onDocUp = function(e) {
+            if (settings.closeOnEscape) {
+                if (e.keyCode === 27) {
+                    closePopUp();
+                }
+            }
+        },
+
+
+        closeCallback = function() {
+            if (isFunction(settings.onPopUpClose)) {
+                settings.onPopUpClose.call();
+                shareInfo('CoverPop is closed.');
+            }
+        };
 
 
 
@@ -80,7 +80,7 @@
 
         // bind close events and continue with default event
         if ($('.' + settings.closeClassDefault).length) {
-            $(document).on('click', '.' + settings.closeClassDefault, function(e) {
+            $(document).on('click', '.' + settings.closeClassDefault, function() {
                 CoverPop.closePopUp();
             });
         }
@@ -106,7 +106,7 @@
         settings = $.extend(settings, options);
 
         // check if there is a cookie or hash before proceeding
-        if (checkCookie() === false || hashExists(settings.forceHash) === true) {
+        if (checkCookie(settings.cookieName) === false || hashExists(settings.forceHash) === true) {
             CoverPop.openPopUp();
         }
 
@@ -141,15 +141,19 @@
 
 
     // check cookie exists and isn't expired
-    function checkCookie() {
-        if (document.cookie.indexOf(settings.cookieName) !== -1) return true;
+    function checkCookie(cookieName) {
+        if (document.cookie.indexOf(cookieName) !== -1) {
+            return true;
+        }
         return false;
     }
 
 
     // check if there is a hash in the url
     function hashExists(hash) {
-        if (window.location.hash.indexOf(hash) !== -1) return true;
+        if (window.location.hash.indexOf(hash) !== -1) {
+            return true;
+        }
         return false;
     }
 
