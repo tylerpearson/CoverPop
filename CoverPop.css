@@ -20,7 +20,7 @@ body {
         overflow: hidden;
     }
 
-.CoverPop-cover {
+#CoverPop-cover {
     display: none;
     position: fixed;
     left: 0;
@@ -30,6 +30,6 @@ body {
     z-index: 1000;
 }
 
-    .CoverPop-content {
+    #CoverPop-content {
 
     }

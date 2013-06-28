@@ -6,15 +6,13 @@
 */
 
 
-
-
 (function ($, CoverPop, undefined) {
 
     'use strict';
 
     // set default settings
     var settings = {
-            coverClass:          'CoverPop-cover',       // set default cover class
+            coverId:             'CoverPop-cover',        // set default cover id
             fadeInDuration:      500,                    // time (in milliseconds) to fade in
             fadeOutDuration:     500,                    // time (in milliseconds) to fade out
             expires:             30,                     // duration (in days) before it pops up again
@@ -30,13 +28,13 @@
         },
 
         el = {
-            $html: $('html'),
-            $cover: $('.' + settings.coverClass)
+            $html:  document.getElementsByTagName('html'),
+            $cover: document.getElementById(settings.coverId)
         },
 
 
         /**
-         * Helpers
+         * Helper methods
          */
 
         // check if a function
@@ -81,8 +79,9 @@
 
 
 
-        /* Private
-        -------------------------------------------------------*/
+        /**
+         * Private Methods
+         */
 
         openCallback = function() {
             if (isFunction(settings.onPopUpOpen)) {
@@ -112,8 +111,9 @@
 
 
 
-    /* Public
-    -------------------------------------------------------*/
+    /**
+     * Public methods
+     */
 
     CoverPop.openPopUp = function() {
 
