@@ -12,20 +12,47 @@
 
     // set default settings
     var settings = {
-            coverId:             'CoverPop-cover',        // set default cover id
-            fadeInDuration:      500,                    // time (in milliseconds) to fade in
-            fadeOutDuration:     500,                    // time (in milliseconds) to fade out
-            expires:             30,                     // duration (in days) before it pops up again
-            closeClassNoDefault: 'CoverPop-close',       // close if someone clicks an element with this class and prevent default action
-            closeClassDefault:   'CoverPop-close-go',    // close if someone clicks an element with this class and continue default action
-            cookieName:          'CoverPop',             // to change the plugin cookie name
-            onPopUpOpen:         function() {},          // on popup open / default is nothing
-            onPopUpClose:        function() {},          // on popup close / default is nothing
-            forceHash:           'splash',               // hash to append to url to force display of popup
-            delayHash:           'go',                   // hash to append to url to delay popup for 1 day
-            closeOnEscape:       true,                   // close if the user clicks escape
-            info:                false                   // toggle console.log statements
+
+            // set default cover id
+            coverId: 'CoverPop-cover',
+
+            // time (in milliseconds) to fade in
+            fadeInDuration: 500,
+
+            // time (in milliseconds) to fade out
+            fadeOutDuration: 500,
+
+            // duration (in days) before it pops up again
+            expires: 30,
+
+            // close if someone clicks an element with this class and prevent default action
+            closeClassNoDefault: 'CoverPop-close',
+
+            // close if someone clicks an element with this class and continue default action
+            closeClassDefault: 'CoverPop-close-go',
+
+            // change the cookie name
+            cookieName: 'CoverPop',
+
+            // on popup open / default is nothing
+            onPopUpOpen: function() {},
+
+            // on popup close / default is nothing
+            onPopUpClose: function() {},
+
+            // hash to append to url to force display of popup
+            forceHash: 'splash',
+
+            // hash to append to url to delay popup for 1 day
+            delayHash: 'go',
+
+            // close if the user clicks escape
+            closeOnEscape: true,
+
+            // toggle console.log statements
+            info: false
         },
+
 
         el = {
             $html:  document.getElementsByTagName('html'),
