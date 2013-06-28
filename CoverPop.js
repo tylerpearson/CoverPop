@@ -1,3 +1,13 @@
+/**
+*
+* CoverPop.js
+* License: MIT
+*
+*/
+
+
+
+
 (function ($, CoverPop, undefined) {
 
     'use strict';
@@ -22,6 +32,51 @@
         el = {
             $html: $('html'),
             $cover: $('.' + settings.coverClass)
+        },
+
+
+        /**
+         * Helpers
+         */
+
+        // check if a function
+        isFunction = function(functionToCheck) {
+            var getType = {};
+            return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+        },
+
+
+        // for info and debugging
+        shareInfo = function(message) {
+            if (window.console && window.console.log && settings.info) {
+                window.console.log(message);
+            }
+        },
+
+
+        setCookie = function(name, days) {
+            var date = new Date();
+            date.setTime(+ date + (days * 86400000));
+            document.cookie = name + '=true; expires=' + date.toGMTString() + '; path=/';
+            shareInfo('Cookie ' + name + ' set for ' + days + ' days away.');
+        },
+
+
+        // check cookie exists and isn't expired
+        checkCookie = function(name) {
+            if (document.cookie.indexOf(name) !== -1) {
+                return true;
+            }
+            return false;
+        },
+
+
+        // check if there is a hash in the url
+        hashExists = function(hash) {
+            if (window.location.hash.indexOf(hash) !== -1) {
+                return true;
+            }
+            return false;
         },
 
 
@@ -60,10 +115,10 @@
     /* Public
     -------------------------------------------------------*/
 
-    CoverPop.openPopUp = function () {
+    CoverPop.openPopUp = function() {
 
         if (hashExists(settings.delayHash)) {
-            setCookie(1);
+            setCookie(settings.cookieName, 1);
             return;
         }
 
@@ -95,7 +150,7 @@
         el.$html.removeClass('CoverPop-open');
         el.$cover.fadeOut(settings.fadeOutDuration, closeCallback);
 
-        setCookie(settings.expires);
+        setCookie(settings.cookieName, settings.expires);
 
         // unbind escape detection to document
         $(document).unbind('keyup', onDocUp);
@@ -112,50 +167,6 @@
 
     };
 
-
-
-
-    /* Helpers
-    -------------------------------------------------------*/
-
-    function isFunction(functionToCheck) {
-        var getType = {};
-        return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
-    }
-
-
-    // for info and debugging
-    function shareInfo(message) {
-        if (window.console && window.console.log && settings.info) {
-            window.console.log(message);
-        }
-    }
-
-
-    function setCookie(days) {
-        var date = new Date();
-        date.setTime(+ date + (days * 86400000));
-        document.cookie = settings.cookieName + '=true; expires=' + date.toGMTString() + '; path=/';
-        shareInfo('Cookie ' + settings.cookieName + ' set for ' + days + ' days away.');
-    }
-
-
-    // check cookie exists and isn't expired
-    function checkCookie(cookieName) {
-        if (document.cookie.indexOf(cookieName) !== -1) {
-            return true;
-        }
-        return false;
-    }
-
-
-    // check if there is a hash in the url
-    function hashExists(hash) {
-        if (window.location.hash.indexOf(hash) !== -1) {
-            return true;
-        }
-        return false;
-    }
 
 
 }(jQuery, window.CoverPop = window.CoverPop || {}));
