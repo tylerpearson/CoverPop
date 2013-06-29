@@ -34,11 +34,11 @@
             // change the cookie name
             cookieName: 'CoverPop',
 
-            // on popup open / default is nothing
-            onPopUpOpen: function() {},
+            // on popup open function callback
+            onPopUpOpen: null,
 
-            // on popup close / default is nothing
-            onPopUpClose: function() {},
+            // on popup close function callback
+            onPopUpClose: null,
 
             // hash to append to url to force display of popup
             forceHash: 'splash',
@@ -55,7 +55,7 @@
 
 
         el = {
-            $html:  document.getElementsByTagName('html'),
+            $html:  document.getElementsByTagName('html')[0],
             $cover: document.getElementById(settings.coverId)
         },
 
@@ -110,14 +110,6 @@
          * Private Methods
          */
 
-        openCallback = function() {
-            if (isFunction(settings.onPopUpOpen)) {
-                settings.onPopUpOpen.call();
-                shareInfo('CoverPop is open.');
-            }
-        },
-
-
         // close popup when user hits escape button
         onDocUp = function(e) {
             if (settings.closeOnEscape) {
@@ -127,11 +119,33 @@
             }
         },
 
+        openCallback = function() {
+
+            // if not the default setting
+            if (settings.onPopUpClose !== null) {
+
+                // make sure the callback is a function
+                if (isFunction(settings.onPopUpOpen)) {
+                    settings.onPopUpOpen.call();
+                    shareInfo('CoverPop is open.');
+                } else {
+                    throw new Error("CoverPop open callback must be a function.");
+                }
+            }
+        },
 
         closeCallback = function() {
-            if (isFunction(settings.onPopUpClose)) {
-                settings.onPopUpClose.call();
-                shareInfo('CoverPop is closed.');
+
+            // if not the default setting
+            if (settings.onPopUpClose !== null) {
+
+                // make sure the callback is a function
+                if (isFunction(settings.onPopUpClose)) {
+                    settings.onPopUpClose.call();
+                    shareInfo('CoverPop is closed.');
+                } else {
+                    throw new Error("CoverPop close callback must be a function.");
+                }
             }
         };
 
