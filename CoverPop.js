@@ -10,7 +10,6 @@
  *   http://www.opensource.org/licenses/mit-license.php
  */
 
-
 (function (CoverPop, undefined) {
 
     'use strict';
@@ -100,7 +99,6 @@
                 }
             },
 
-            // check if a function
             isFunction: function(functionToCheck) {
                 var getType = {};
                 return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
@@ -174,7 +172,7 @@
                     settings.onPopUpOpen.call();
                     util.shareInfo('CoverPop is open.');
                 } else {
-                    throw new Error("CoverPop open callback must be a function.");
+                    throw new Error('CoverPop open callback must be a function.');
                 }
             }
         },
@@ -189,7 +187,7 @@
                     settings.onPopUpClose.call();
                     util.shareInfo('CoverPop is closed.');
                 } else {
-                    throw new Error("CoverPop close callback must be a function.");
+                    throw new Error('CoverPop close callback must be a function.');
                 }
             }
         };
@@ -230,7 +228,6 @@
 
         // bind escape detection to document
         util.addListener(document, 'keyup', onDocUp);
-
         openCallback();
     };
 
@@ -239,7 +236,7 @@
         util.setCookie(settings.cookieName, settings.expires);
 
         // unbind escape detection to document
-        util.removeListener(document, "keyup", onDocUp);
+        util.removeListener(document, 'keyup', onDocUp);
         closeCallback();
     };
 
@@ -256,7 +253,6 @@
     CoverPop.start = function(options) {
         CoverPop.init(options);
     };
-
 
 
 }(window.CoverPop = window.CoverPop || {}));
