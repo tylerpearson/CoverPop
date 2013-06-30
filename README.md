@@ -1,6 +1,6 @@
 # CoverPop
 
-CoverPop is a lightweight lightbox popup plugin with cookie integration. 99.9% style agnostic. Responsive friendly.
+CoverPop is a lightweight lightbox popup plugin with cookie integration. Style agnostic. Responsive friendly.
 
 ## Website
 
@@ -32,32 +32,31 @@ Include the plugin css file:
 
 ### JS
 
-CoverPop does use some jQuery, so include it and the `CoverPop.js` file.
+CoverPop does not use jQuery.
+
+Include the CoverPop.js file at the bottom of your markup.
 
 ```html
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="js/CoverPop.js"></script>
 ```
 
 Start it with the default settings:
 
 ```javascript
-CoverPop.init();
+CoverPop.start();
 ```
 
 **CoverPop** can be to customized:
 
 ```javascript
-CoverPop.init({
-    coverClass:          'CoverPop-cover',       // set default cover class
-    fadeInDuration:      500,                    // time (in milliseconds) to fade in
-    fadeOutDuration:     500,                    // time (in milliseconds) to fade out
+CoverPop.start({
+    coverId:             'CoverPop-cover',       // set default cover id
     expires:             30,                     // duration (in days) before it pops up again
     closeClassNoDefault: 'CoverPop-close',       // close if someone clicks an element with this class and prevent default action
     closeClassDefault:   'CoverPop-close-go',    // close if someone clicks an element with this class and continue default action
     cookieName:          'CoverPop',             // to change the plugin cookie name
-    onPopUpOpen:         function() {},          // on popup open
-    onPopUpClose:        function() {},          // on popup close
+    onPopUpOpen:         function() {},          // on popup open callback function
+    onPopUpClose:        function() {},          // on popup close callback function
     forceHash:           'splash',               // hash to append to url to force display of popup (e.g. http://yourdomain.com/#splash)
     delayHash:           'go',                   // hash to append to url to delay popup for 1 day (e.g. http://yourdomain.com/#go)
     closeOnEscape:       true,                   // close if the user clicks escape
@@ -67,9 +66,9 @@ CoverPop.init({
 
 ### HTML
 
-`.CoverPop-cover` is used on the full window cover.
+`#CoverPop-cover` is used on the full window cover.
 
-By default, a click on any element with `.CoverPop-close` will close the popup. The plugin adds jQuery's `preventDefault()` to elements with this class.
+By default, a click on any element with `.CoverPop-close` will close the popup. The plugin uses `preventDefault` with elements with this class.
 
 If you wish to continue with the default action, but also hide the popup, add `.CoverPop-close-go`. This is particularly useful for form submissions that are sent to another page.
 
@@ -81,7 +80,7 @@ If you wish to continue with the default action, but also hide the popup, add `.
 
 
   <!-- start popup -->
-  <div class="CoverPop-cover splash">
+  <div id="CoverPop-cover" class="splash">
       <div class="CoverPop-content splash-center">
 
           <!-- the popup content (form, welcome message, etc.) -->
@@ -104,7 +103,11 @@ See example uses at [www.coverpopjs.com](http://coverpopjs.com).
 
 ## Updates
 
-
+* v2.1 *6/30/2013*
+  * Ditch jQuery dependency
+  * Switch to using an id instead of class for CoverPop-cover
+  * Remove fadeIn/Out duration options because animations are now handled through CSS
+  * Add CoverPop.start() alias for CoverPop.init()
 * v2.0.0 - Major changes  *6/22/2013*
   * Major cleanup of the JS.
   * Removed the option to center with JS.
