@@ -10,15 +10,11 @@ body {
     position: relative;
 }
 
-.CoverPop-open {
+.CoverPop-open,
+.CoverPop-open body {
     height: 100%;
     overflow: hidden;
 }
-
-    .splash-up body {
-        height: 100%;
-        overflow: hidden;
-    }
 
 #CoverPop-cover {
     display: none;
@@ -28,8 +24,20 @@ body {
     right: 0;
     bottom: 0;
     z-index: 1000;
+    -webkit-animation: fade-in .25s ease-in;
+    -moz-animation-name: fade-in .25s ease-in;
+    -ms-animation-name: fade-in .25s ease-in;
+    -o-animation-name: fade-in .25s ease-in;
+    animation-name: fade-in .25s ease-in;
 }
 
-    #CoverPop-content {
-
+    .CoverPop-open #CoverPop-cover {
+        display: block;
     }
+
+
+@-webkit-keyframes fade-in {
+    0% { opacity: 0; }
+    25% { opacity: 0; }
+    100% { opacity: 1; }
+}

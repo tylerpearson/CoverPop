@@ -2,9 +2,15 @@
 * Custom Styles
 */
 
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
     .splash {
-        background-color: rgb(47,99,135);
-        background-color: rgba(47,99,135,.9);
+        background-color: rgb(42,86,186);
+        background-color: rgba(42,86,186,0.95);
     }
 
         .splash-center {
@@ -14,4 +20,3 @@
             background: #fff;
             margin: 10% auto 0;
         }
-

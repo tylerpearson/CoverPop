@@ -1,12 +1,17 @@
-/**
-*
-* CoverPop.js
-* License: MIT
-*
-*/
+/*
+ * CoverPop 2.1
+ *
+ * http://coverpopjs.com
+ *
+ * Copyright (c) 2013 Tyler Pearson
+ *
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ */
 
 
-(function ($, CoverPop, undefined) {
+(function (CoverPop, undefined) {
 
     'use strict';
 
@@ -15,12 +20,6 @@
 
             // set default cover id
             coverId: 'CoverPop-cover',
-
-            // time (in milliseconds) to fade in
-            fadeInDuration: 500,
-
-            // time (in milliseconds) to fade out
-            fadeOutDuration: 500,
 
             // duration (in days) before it pops up again
             expires: 30,
@@ -54,9 +53,12 @@
         },
 
 
-        el = {
-            $html:  document.getElementsByTagName('html')[0],
-            $cover: document.getElementById(settings.coverId)
+        // grab the elements to be used
+        $el = {
+            html: document.getElementsByTagName('html')[0],
+            cover: document.getElementById(settings.coverId),
+            closeClassDefaultEls: document.getElementsByClassName(settings.closeClassDefault),
+            closeClassNoDefaultEls: document.getElementsByClassName(settings.closeClassNoDefault)
         },
 
 
@@ -64,46 +66,89 @@
          * Helper methods
          */
 
-        // check if a function
-        isFunction = function(functionToCheck) {
-            var getType = {};
-            return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
-        },
+        util = {
 
+            hasClass: function(el, name) {
+                return new RegExp('(\\s|^)' + name + '(\\s|$)').test(el.className);
+            },
 
-        // for info and debugging
-        shareInfo = function(message) {
-            if (window.console && window.console.log && settings.info) {
-                window.console.log(message);
+            addClass: function(el, name) {
+                if (!util.hasClass(el, name)) {
+                    el.className += (el.className ? ' ' : '') + name;
+                }
+            },
+
+            removeClass: function(el, name) {
+                if (util.hasClass(el, name)) {
+                    el.className = el.className.replace(new RegExp('(\\s|^)' + name + '(\\s|$)'), ' ').replace(/^\s+|\s+$/g, '');
+                }
+            },
+
+            addListener: function(target, type, handler) {
+                if (target.addEventListener) {
+                    target.addEventListener(type, handler, false);
+                } else if (target.attachEvent) {
+                    target.attachEvent('on' + type, handler);
+                }
+            },
+
+            removeListener: function(target, type, handler) {
+                if (target.removeEventListener) {
+                    target.removeEventListener(type, handler, false);
+                } else if (target.detachEvent) {
+                    target.detachEvent('on' + type, handler);
+                }
+            },
+
+            // check if a function
+            isFunction: function(functionToCheck) {
+                var getType = {};
+                return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+            },
+
+            // for info and debugging
+            shareInfo: function(message) {
+                if (window.console && window.console.log && settings.info) {
+                    window.console.log(message);
+                }
+            },
+
+            setCookie: function(name, days) {
+                var date = new Date();
+                date.setTime(+ date + (days * 86400000));
+                document.cookie = name + '=true; expires=' + date.toGMTString() + '; path=/';
+                util.shareInfo('Cookie ' + name + ' set for ' + days + ' days away.');
+            },
+
+            hasCookie: function(name) {
+                if (document.cookie.indexOf(name) !== -1) {
+                    return true;
+                }
+                return false;
+            },
+
+            // check if there is a hash in the url
+            hashExists: function(hash) {
+                if (window.location.hash.indexOf(hash) !== -1) {
+                    return true;
+                }
+                return false;
+            },
+
+            preventDefault: function(event) {
+                if (event.preventDefault) {
+                    event.preventDefault();
+                } else {
+                    event.returnValue = false;
+                }
+            },
+
+            mergeObj: function(obj1, obj2) {
+                for (var attr in obj2) {
+                    obj1[attr] = obj2[attr];
+                }
             }
         },
-
-
-        setCookie = function(name, days) {
-            var date = new Date();
-            date.setTime(+ date + (days * 86400000));
-            document.cookie = name + '=true; expires=' + date.toGMTString() + '; path=/';
-            shareInfo('Cookie ' + name + ' set for ' + days + ' days away.');
-        },
-
-
-        // check cookie exists and isn't expired
-        checkCookie = function(name) {
-            if (document.cookie.indexOf(name) !== -1) {
-                return true;
-            }
-            return false;
-        },
-
-
-        // check if there is a hash in the url
-        hashExists = function(hash) {
-            if (window.location.hash.indexOf(hash) !== -1) {
-                return true;
-            }
-            return false;
-        },
-
 
 
         /**
@@ -114,7 +159,7 @@
         onDocUp = function(e) {
             if (settings.closeOnEscape) {
                 if (e.keyCode === 27) {
-                    closePopUp();
+                    CoverPop.close();
                 }
             }
         },
@@ -125,9 +170,9 @@
             if (settings.onPopUpClose !== null) {
 
                 // make sure the callback is a function
-                if (isFunction(settings.onPopUpOpen)) {
+                if (util.isFunction(settings.onPopUpOpen)) {
                     settings.onPopUpOpen.call();
-                    shareInfo('CoverPop is open.');
+                    util.shareInfo('CoverPop is open.');
                 } else {
                     throw new Error("CoverPop open callback must be a function.");
                 }
@@ -140,9 +185,9 @@
             if (settings.onPopUpClose !== null) {
 
                 // make sure the callback is a function
-                if (isFunction(settings.onPopUpClose)) {
+                if (util.isFunction(settings.onPopUpClose)) {
                     settings.onPopUpClose.call();
-                    shareInfo('CoverPop is closed.');
+                    util.shareInfo('CoverPop is closed.');
                 } else {
                     throw new Error("CoverPop close callback must be a function.");
                 }
@@ -151,63 +196,66 @@
 
 
 
-
     /**
      * Public methods
      */
 
-    CoverPop.openPopUp = function() {
+    CoverPop.open = function() {
 
-        if (hashExists(settings.delayHash)) {
-            setCookie(settings.cookieName, 1);
+        if (util.hashExists(settings.delayHash)) {
+            util.setCookie(settings.cookieName, 1); // expire after 1 day
             return;
         }
 
-        el.$html.addClass('coverPop-open');
-        el.$cover.fadeIn(settings.fadeInDuration, openCallback);
+        util.addClass($el.html, 'CoverPop-open');
+        openCallback();
+
+        var i, len;
 
         // bind close events and prevent default event
-        if ($('.' + settings.closeClassNoDefault).length) {
-            $(document).on('click', '.' + settings.closeClassNoDefault, function(e) {
-                e.preventDefault();
-                CoverPop.closePopUp();
-            });
+        if ($el.closeClassNoDefaultEls.length > 0) {
+            for (i=0, len = $el.closeClassNoDefaultEls.length; i < len; i++) {
+                util.addListener($el.closeClassNoDefaultEls[i], 'click', function(e) {
+                    util.preventDefault(e);
+                    CoverPop.close();
+                });
+            }
         }
 
         // bind close events and continue with default event
-        if ($('.' + settings.closeClassDefault).length) {
-            $(document).on('click', '.' + settings.closeClassDefault, function() {
-                CoverPop.closePopUp();
-            });
+        if ($el.closeClassDefaultEls.length > 0) {
+            for (i=0, len = $el.closeClassDefaultEls.length; i < len; i++) {
+                util.addListener($el.closeClassDefaultEls[i], 'click', CoverPop.close);
+            }
         }
 
         // bind escape detection to document
-        $(document).bind('keyup', onDocUp);
+        util.addListener(document, 'keyup', onDocUp);
     };
 
-
-    CoverPop.closePopUp = function() {
-
-        el.$html.removeClass('CoverPop-open');
-        el.$cover.fadeOut(settings.fadeOutDuration, closeCallback);
-
-        setCookie(settings.cookieName, settings.expires);
+    CoverPop.close = function() {
+        util.removeClass($el.html, 'CoverPop-open');
+        util.setCookie(settings.cookieName, settings.expires);
 
         // unbind escape detection to document
-        $(document).unbind('keyup', onDocUp);
+        util.removeListener(document, "keyup", onDocUp);
+        closeCallback();
     };
-
 
     CoverPop.init = function(options) {
-        settings = $.extend(settings, options);
+        util.mergeObj(settings, options);
 
         // check if there is a cookie or hash before proceeding
-        if (checkCookie(settings.cookieName) === false || hashExists(settings.forceHash) === true) {
-            CoverPop.openPopUp();
+        if (!util.hasCookie(settings.cookieName) || util.hashExists(settings.forceHash)) {
+            CoverPop.open();
         }
+    };
 
+    // alias
+    CoverPop.start = function(options) {
+        CoverPop.init(options);
     };
 
 
 
-}(jQuery, window.CoverPop = window.CoverPop || {}));
+}(window.CoverPop = window.CoverPop || {}));
