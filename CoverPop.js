@@ -202,15 +202,14 @@
 
     CoverPop.open = function() {
 
+        var i, len;
+
         if (util.hashExists(settings.delayHash)) {
             util.setCookie(settings.cookieName, 1); // expire after 1 day
             return;
         }
 
         util.addClass($el.html, 'CoverPop-open');
-        openCallback();
-
-        var i, len;
 
         // bind close events and prevent default event
         if ($el.closeClassNoDefaultEls.length > 0) {
@@ -231,6 +230,8 @@
 
         // bind escape detection to document
         util.addListener(document, 'keyup', onDocUp);
+
+        openCallback();
     };
 
     CoverPop.close = function() {
