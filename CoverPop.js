@@ -48,7 +48,7 @@
             closeOnEscape: true,
 
             // toggle console.log statements
-            info: false
+            debug: false
         },
 
 
@@ -106,7 +106,7 @@
 
             // for info and debugging
             shareInfo: function(message) {
-                if (window.console && window.console.log && settings.info) {
+                if (window.console && window.console.log && settings.debug) {
                     window.console.log(message);
                 }
             },

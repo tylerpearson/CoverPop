@@ -60,7 +60,7 @@ CoverPop.start({
     forceHash:           'splash',               // hash to append to url to force display of popup (e.g. http://yourdomain.com/#splash)
     delayHash:           'go',                   // hash to append to url to delay popup for 1 day (e.g. http://yourdomain.com/#go)
     closeOnEscape:       true,                   // close if the user clicks escape
-    info:                false                   // toggle console.log statements
+    debug:               false                   // toggle console.log statements
 });
 ```
 
