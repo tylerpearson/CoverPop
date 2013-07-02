@@ -46,7 +46,7 @@ Start it with the default settings:
 CoverPop.start();
 ```
 
-**CoverPop** can be to customized:
+**CoverPop** can be customized:
 
 ```javascript
 CoverPop.start({
