@@ -56,8 +56,8 @@
         $el = {
             html: document.getElementsByTagName('html')[0],
             cover: document.getElementById(settings.coverId),
-            closeClassDefaultEls: document.getElementsByClassName(settings.closeClassDefault),
-            closeClassNoDefaultEls: document.getElementsByClassName(settings.closeClassNoDefault)
+            closeClassDefaultEls: document.querySelectorAll('.' + settings.closeClassDefault),
+            closeClassNoDefaultEls: document.querySelectorAll('.' + settings.closeClassNoDefault)
         },
 
 
