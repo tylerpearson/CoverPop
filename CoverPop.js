@@ -30,7 +30,7 @@
             closeClassDefault: 'CoverPop-close-go',
 
             // change the cookie name
-            cookieName: 'CoverPop',
+            cookieName: '_CoverPop',
 
             // on popup open function callback
             onPopUpOpen: null,
