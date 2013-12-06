@@ -54,7 +54,7 @@ CoverPop.start({
     expires:             30,                     // duration (in days) before it pops up again
     closeClassNoDefault: 'CoverPop-close',       // close if someone clicks an element with this class and prevent default action
     closeClassDefault:   'CoverPop-close-go',    // close if someone clicks an element with this class and continue default action
-    cookieName:          '_CoverPop',             // to change the plugin cookie name
+    cookieName:          '_CoverPop',            // to change the plugin cookie name
     onPopUpOpen:         function() {},          // on popup open callback function
     onPopUpClose:        function() {},          // on popup close callback function
     forceHash:           'splash',               // hash to append to url to force display of popup (e.g. http://yourdomain.com/#splash)
