@@ -1,13 +1,9 @@
-/*
+/*!
  * CoverPop 2.1
- *
  * http://coverpopjs.com
  *
  * Copyright (c) 2013 Tyler Pearson
- *
- *
- * Licensed under the MIT license:
- *   http://www.opensource.org/licenses/mit-license.php
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 
 (function (CoverPop, undefined) {
