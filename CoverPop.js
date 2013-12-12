@@ -172,7 +172,7 @@
                     settings.onPopUpOpen.call();
                     util.shareInfo('CoverPop is open.');
                 } else {
-                    throw new Error('CoverPop open callback must be a function.');
+                    throw new TypeError('CoverPop open callback must be a function.');
                 }
             }
         },
@@ -187,7 +187,7 @@
                     settings.onPopUpClose.call();
                     util.shareInfo('CoverPop is closed.');
                 } else {
-                    throw new Error('CoverPop close callback must be a function.');
+                    throw new TypeError('CoverPop close callback must be a function.');
                 }
             }
         };
