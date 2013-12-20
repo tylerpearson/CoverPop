@@ -1,6 +1,5 @@
 /*
 * Custom Styles
-* The css styles CoverPop uses is in CoverPop.css
 */
 
 * {
@@ -16,8 +15,34 @@
 
         .splash-center {
             text-align: center;
-            width: 40%;
+            max-width: 420px;
             padding: 20px;
             background: #fff;
             margin: 10% auto 0;
         }
+
+            .splash-title {
+                margin: 0 0 5px 0;
+            }
+
+            .input-text {
+                width: 100%;
+                margin-bottom: 5px;
+                border: solid 1px #ccc;
+                padding: 7px;
+            }
+
+            .submit-button {
+                margin-bottom: 10px;
+            }
+
+            .close-splash {
+                margin: 0;
+                font-size: 12px;
+            }
+
+@media screen and (max-width: 420px) {
+    .splash-center {
+        margin: 0;
+    }
+}
