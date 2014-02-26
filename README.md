@@ -98,8 +98,64 @@ If you wish to continue with the default action, but also hide the popup, add `.
 
 ## Examples
 
-See example uses at [www.coverpopjs.com](http://coverpopjs.com).
+See all example uses at [www.coverpopjs.com](http://coverpopjs.com).
 
+### Use a new cookie
+
+*Example use:* You changed the popup, and want all new visitors to see the new one.
+
+```js 
+CoverPop.start({
+    cookieName: 'CoverPop-new'   
+});
+```
+
+### Hide popup to the visitor for a day
+
+*Example use:* You are sending visitors to a page that already has a signup form, and don't want them to see the popup.
+
+```js
+http://www.example.com/#go
+```
+
+### Force popup
+
+*Example use:* You are sending visitors to a page and want visitors who have already been to the site to see the popup again.
+
+```js
+http://www.example.com/#splash
+```
+
+### Change time before cookie expires
+
+*Example use:* You want visitors to see the popup every 7 days, instead of 30.
+
+```js
+CoverPop.start({
+    expires: 7
+});
+```
+
+### Do something after the popup closes
+
+*Example use:* You want to start a video after the popup is closed.
+
+```js
+CoverPop.start({
+    onPopUpClose: function() {
+        var player = document.getElementById('myVideo');
+        player.play();
+    }
+});
+```
+
+### Hide the popup when someone clicks submit on a form and continue
+
+*Example use:* You want to close the popup and set the cookie when a visitor clicks submit on a form in the popup.
+
+```html
+<input type="submit" value="Submit" class="CoverPop-close-go">
+```
 
 ## Updates
 
