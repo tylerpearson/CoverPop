@@ -1,6 +1,6 @@
 # CoverPop
 
-CoverPop is a lightweight lightbox popup plugin with cookie integration. Style agnostic. Responsive friendly.
+CoverPop is modal splash page plugin with cookie integration. Style agnostic. Responsive friendly.
 
 ## Website
 
