@@ -1,8 +1,8 @@
 /*!
- * CoverPop 2.1
+ * CoverPop 2.2
  * http://coverpopjs.com
  *
- * Copyright (c) 2013 Tyler Pearson
+ * Copyright (c) 2014 Tyler Pearson
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 
@@ -237,11 +237,13 @@
     };
 
     CoverPop.init = function(options) {
-        util.mergeObj(settings, options);
+        if (navigator.cookieEnabled) {
+            util.mergeObj(settings, options);
 
-        // check if there is a cookie or hash before proceeding
-        if (!util.hasCookie(settings.cookieName) || util.hashExists(settings.forceHash)) {
-            CoverPop.open();
+            // check if there is a cookie or hash before proceeding
+            if (!util.hasCookie(settings.cookieName) || util.hashExists(settings.forceHash)) {
+                CoverPop.open();
+            }
         }
     };
 
