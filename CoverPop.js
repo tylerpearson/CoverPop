@@ -161,7 +161,7 @@
         openCallback = function() {
 
             // if not the default setting
-            if (settings.onPopUpClose !== null) {
+            if (settings.onPopUpOpen !== null) {
 
                 // make sure the callback is a function
                 if (util.isFunction(settings.onPopUpOpen)) {
