@@ -1,5 +1,5 @@
 /*!
- * CoverPop 2.2
+ * CoverPop 2.2.1
  * http://coverpopjs.com
  *
  * Copyright (c) 2014 Tyler Pearson

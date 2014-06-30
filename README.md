@@ -163,6 +163,7 @@ CoverPop.start({
 
 ## Updates
 
+* v2.2.1 - Add fix for open callback check
 * v2.2 - Add check to ensure cookies are enabled
 * v2.0.2 - Tweak default CSS to allow scrolling on overflow
 * v2.0.1 - Add underscore to cookie name to allow Varnish caching *7/27/2013*
