@@ -1,5 +1,5 @@
 /*!
- * CoverPop 2.3.0
+ * CoverPop 2.4.0
  * http://coverpopjs.com
  *
  * Copyright (c) 2014 Tyler Pearson
@@ -41,7 +41,10 @@
             delayHash: 'go',
 
             // close if the user clicks escape
-            closeOnEscape: true
+            closeOnEscape: true,
+
+            // set an optional delay (in milliseconds) before showing the popup
+            delay: 0
         },
 
 
@@ -229,7 +232,15 @@
 
             // check if there is a cookie or hash before proceeding
             if (!util.hasCookie(settings.cookieName) || util.hashExists(settings.forceHash)) {
-                CoverPop.open();
+                if (settings.delay === 0) {
+                    CoverPop.open();
+                } else {
+                    // delay showing the popup
+                    setTimeout(function() {
+                        CoverPop.open();
+                    }, settings.delay);
+                }
+
             }
         }
     };

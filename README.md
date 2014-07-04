@@ -113,6 +113,16 @@ CoverPop.start({
 });
 ```
 
+### Delay showing the popup for 4 seconds
+
+*Example use:* You'd prefer to have the popup not show immediately, and instead wait 4 seconds.
+
+```
+CoverPop.init({
+    delay: 4000
+});
+```
+
 ### Hide popup to the visitor for a day
 
 *Example use:* You are sending visitors to a page that already has a signup form, and don't want them to see the popup.

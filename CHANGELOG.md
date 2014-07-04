@@ -1,5 +1,6 @@
 ## Updates
 
+* v2.4.0 - Added the ability to delay showing the popup
 * v2.3.0 - Remove console.log debugging option
 * v2.2.1 - Add fix for open callback check
 * v2.2 - Add check to ensure cookies are enabled
