@@ -1,5 +1,5 @@
 /*!
- * CoverPop 2.4.0
+ * CoverPop 2.4.1
  * http://coverpopjs.com
  *
  * Copyright (c) 2014 Tyler Pearson
@@ -199,8 +199,10 @@
         if ($el.closeClassNoDefaultEls.length > 0) {
             for (i=0, len = $el.closeClassNoDefaultEls.length; i < len; i++) {
                 util.addListener($el.closeClassNoDefaultEls[i], 'click', function(e) {
-                    util.preventDefault(e);
-                    CoverPop.close();
+                    if (e.target === this) {
+                        util.preventDefault(e);
+                        CoverPop.close();
+                    }
                 });
             }
         }
@@ -208,7 +210,11 @@
         // bind close events and continue with default event
         if ($el.closeClassDefaultEls.length > 0) {
             for (i=0, len = $el.closeClassDefaultEls.length; i < len; i++) {
-                util.addListener($el.closeClassDefaultEls[i], 'click', CoverPop.close);
+                util.addListener($el.closeClassDefaultEls[i], 'click', function(e) {
+                    if (e.target === this) {
+                        CoverPop.close();
+                    }
+                });
             }
         }
 
@@ -217,7 +223,7 @@
         openCallback();
     };
 
-    CoverPop.close = function() {
+    CoverPop.close = function(e) {
         util.removeClass($el.html, 'CoverPop-open');
         util.setCookie(settings.cookieName, settings.expires);
 
