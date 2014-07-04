@@ -1,5 +1,5 @@
 /*!
- * CoverPop 2.2.1
+ * CoverPop 2.3.0
  * http://coverpopjs.com
  *
  * Copyright (c) 2014 Tyler Pearson
@@ -41,10 +41,7 @@
             delayHash: 'go',
 
             // close if the user clicks escape
-            closeOnEscape: true,
-
-            // toggle console.log statements
-            debug: false
+            closeOnEscape: true
         },
 
 
@@ -100,18 +97,10 @@
                 return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
             },
 
-            // for info and debugging
-            shareInfo: function(message) {
-                if (window.console && window.console.log && settings.debug) {
-                    window.console.log(message);
-                }
-            },
-
             setCookie: function(name, days) {
                 var date = new Date();
                 date.setTime(+ date + (days * 86400000));
                 document.cookie = name + '=true; expires=' + date.toGMTString() + '; path=/';
-                util.shareInfo('Cookie ' + name + ' set for ' + days + ' days away.');
             },
 
             hasCookie: function(name) {
@@ -166,7 +155,6 @@
                 // make sure the callback is a function
                 if (util.isFunction(settings.onPopUpOpen)) {
                     settings.onPopUpOpen.call();
-                    util.shareInfo('CoverPop is open.');
                 } else {
                     throw new TypeError('CoverPop open callback must be a function.');
                 }
@@ -181,7 +169,6 @@
                 // make sure the callback is a function
                 if (util.isFunction(settings.onPopUpClose)) {
                     settings.onPopUpClose.call();
-                    util.shareInfo('CoverPop is closed.');
                 } else {
                     throw new TypeError('CoverPop close callback must be a function.');
                 }
