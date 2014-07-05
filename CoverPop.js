@@ -242,9 +242,7 @@
                     CoverPop.open();
                 } else {
                     // delay showing the popup
-                    setTimeout(function() {
-                        CoverPop.open();
-                    }, settings.delay);
+                    setTimeout(CoverPop.open, settings.delay);
                 }
 
             }
