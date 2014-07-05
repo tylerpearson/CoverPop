@@ -1,8 +1,8 @@
 /*!
- * CoverPop 2.1
+ * CoverPop 2.4.1
  * http://coverpopjs.com
  *
- * Copyright (c) 2013 Tyler Pearson
+ * Copyright (c) 2014 Tyler Pearson
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 
@@ -43,8 +43,8 @@
             // close if the user clicks escape
             closeOnEscape: true,
 
-            // toggle console.log statements
-            debug: false
+            // set an optional delay (in milliseconds) before showing the popup
+            delay: 0
         },
 
 
@@ -100,18 +100,10 @@
                 return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
             },
 
-            // for info and debugging
-            shareInfo: function(message) {
-                if (window.console && window.console.log && settings.debug) {
-                    window.console.log(message);
-                }
-            },
-
             setCookie: function(name, days) {
                 var date = new Date();
                 date.setTime(+ date + (days * 86400000));
                 document.cookie = name + '=true; expires=' + date.toGMTString() + '; path=/';
-                util.shareInfo('Cookie ' + name + ' set for ' + days + ' days away.');
             },
 
             hasCookie: function(name) {
@@ -161,12 +153,11 @@
         openCallback = function() {
 
             // if not the default setting
-            if (settings.onPopUpClose !== null) {
+            if (settings.onPopUpOpen !== null) {
 
                 // make sure the callback is a function
                 if (util.isFunction(settings.onPopUpOpen)) {
                     settings.onPopUpOpen.call();
-                    util.shareInfo('CoverPop is open.');
                 } else {
                     throw new TypeError('CoverPop open callback must be a function.');
                 }
@@ -181,7 +172,6 @@
                 // make sure the callback is a function
                 if (util.isFunction(settings.onPopUpClose)) {
                     settings.onPopUpClose.call();
-                    util.shareInfo('CoverPop is closed.');
                 } else {
                     throw new TypeError('CoverPop close callback must be a function.');
                 }
@@ -209,8 +199,10 @@
         if ($el.closeClassNoDefaultEls.length > 0) {
             for (i=0, len = $el.closeClassNoDefaultEls.length; i < len; i++) {
                 util.addListener($el.closeClassNoDefaultEls[i], 'click', function(e) {
-                    util.preventDefault(e);
-                    CoverPop.close();
+                    if (e.target === this) {
+                        util.preventDefault(e);
+                        CoverPop.close();
+                    }
                 });
             }
         }
@@ -218,7 +210,11 @@
         // bind close events and continue with default event
         if ($el.closeClassDefaultEls.length > 0) {
             for (i=0, len = $el.closeClassDefaultEls.length; i < len; i++) {
-                util.addListener($el.closeClassDefaultEls[i], 'click', CoverPop.close);
+                util.addListener($el.closeClassDefaultEls[i], 'click', function(e) {
+                    if (e.target === this) {
+                        CoverPop.close();
+                    }
+                });
             }
         }
 
@@ -227,7 +223,7 @@
         openCallback();
     };
 
-    CoverPop.close = function() {
+    CoverPop.close = function(e) {
         util.removeClass($el.html, 'CoverPop-open');
         util.setCookie(settings.cookieName, settings.expires);
 
@@ -237,11 +233,21 @@
     };
 
     CoverPop.init = function(options) {
-        util.mergeObj(settings, options);
+        if (navigator.cookieEnabled) {
+            util.mergeObj(settings, options);
 
-        // check if there is a cookie or hash before proceeding
-        if (!util.hasCookie(settings.cookieName) || util.hashExists(settings.forceHash)) {
-            CoverPop.open();
+            // check if there is a cookie or hash before proceeding
+            if (!util.hasCookie(settings.cookieName) || util.hashExists(settings.forceHash)) {
+                if (settings.delay === 0) {
+                    CoverPop.open();
+                } else {
+                    // delay showing the popup
+                    setTimeout(function() {
+                        CoverPop.open();
+                    }, settings.delay);
+                }
+
+            }
         }
     };
 
