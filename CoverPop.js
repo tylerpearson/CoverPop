@@ -1,5 +1,5 @@
 /*!
- * CoverPop 2.4.1
+ * CoverPop 2.5.0
  * http://coverpopjs.com
  *
  * Copyright (c) 2014 Tyler Pearson
@@ -44,7 +44,10 @@
             closeOnEscape: true,
 
             // set an optional delay (in milliseconds) before showing the popup
-            delay: 0
+            delay: 0,
+
+            // automatically close the popup after a set amount of time (in milliseconds)
+            hideAfter: null
         },
 
 
@@ -245,6 +248,12 @@
                     setTimeout(function() {
                         CoverPop.open();
                     }, settings.delay);
+                }
+                if (settings.hideAfter) {
+                    // hide popup after the set amount of time
+                    setTimeout(function() {
+                        CoverPop.close();
+                    }, settings.hideAfter + settings.delay);
                 }
 
             }
