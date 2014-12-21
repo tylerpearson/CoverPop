@@ -65,6 +65,7 @@ CoverPop.start({
     delayHash:           'go',                   // hash to append to url to delay popup for 1 day (e.g. http://yourdomain.com/#go)
     closeOnEscape:       true                    // close if the user clicks escape
     delay:               0                       // set an optional delay (in milliseconds) before showing the popup
+    hideAfter:           null                    // set an optional time (in milliseconds) to autohide
 });
 ```
 
@@ -128,6 +129,14 @@ if (formIsValid()) {
 CoverPop.init({
     delay: 4000
 });
+```
+
+### Hide popup after 30 seconds
+
+```js
+CoverPop.init{(
+    hideAfter: 1000 * 30
+)};
 ```
 
 ### Hide popup to the visitor for a day
