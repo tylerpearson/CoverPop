@@ -114,6 +114,14 @@ CoverPop.start({
 });
 ```
 
+### Manually close the popup after validation of a form
+
+```js
+if (formIsValid()) {
+    CoverPop.close();
+}
+```
+
 ### Delay showing the popup for 4 seconds
 
 *Example use:* You'd prefer to have the popup not show immediately, and instead wait 4 seconds.
