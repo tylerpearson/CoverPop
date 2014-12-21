@@ -1,6 +1,6 @@
 # CoverPop
 
-CoverPop is modal splash page plugin with cookie integration. Style agnostic. Responsive friendly.
+CoverPop is modal splash page plugin that is easily styleable.
 
 ## Website
 
