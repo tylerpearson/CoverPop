@@ -125,13 +125,15 @@ if (formIsValid()) {
 
 *Example use:* You'd prefer to have the popup not show immediately, and instead wait 4 seconds.
 
-```
+```js
 CoverPop.init({
     delay: 4000
 });
 ```
 
 ### Hide popup after 30 seconds
+
+*Example use:* You want the popup to hide after a set amount of time if it's still open.
 
 ```js
 CoverPop.init{(
