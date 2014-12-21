@@ -245,17 +245,12 @@
                     CoverPop.open();
                 } else {
                     // delay showing the popup
-                    setTimeout(function() {
-                        CoverPop.open();
-                    }, settings.delay);
+                    setTimeout(CoverPop.open, settings.delay);
                 }
                 if (settings.hideAfter) {
                     // hide popup after the set amount of time
-                    setTimeout(function() {
-                        CoverPop.close();
-                    }, settings.hideAfter + settings.delay);
+                    setTimeout(CoverPop.close, settings.hideAfter + settings.delay);
                 }
-
             }
         }
     };
