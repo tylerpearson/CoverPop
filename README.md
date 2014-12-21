@@ -102,8 +102,6 @@ If you wish to continue with the default action, but also hide the popup, add `.
 
 ## Examples
 
-See all example uses at [www.coverpopjs.com](http://coverpopjs.com).
-
 ### Use a new cookie
 
 *Example use:* You changed the popup, and want all new visitors to see the new one.
