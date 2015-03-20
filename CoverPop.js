@@ -51,13 +51,8 @@
         },
 
 
-        // grab the elements to be used
-        $el = {
-            html: document.getElementsByTagName('html')[0],
-            cover: document.getElementById(settings.coverId),
-            closeClassDefaultEls: document.querySelectorAll('.' + settings.closeClassDefault),
-            closeClassNoDefaultEls: document.querySelectorAll('.' + settings.closeClassNoDefault)
-        },
+        // for storing the elements to be used
+        $el = {},
 
 
         /**
@@ -238,6 +233,14 @@
     CoverPop.init = function(options) {
         if (navigator.cookieEnabled) {
             util.mergeObj(settings, options);
+
+            // grab the elements to be used
+            $el = {
+                html: document.getElementsByTagName('html')[0],
+                cover: document.getElementById(settings.coverId),
+                closeClassDefaultEls: document.querySelectorAll('.' + settings.closeClassDefault),
+                closeClassNoDefaultEls: document.querySelectorAll('.' + settings.closeClassNoDefault)
+            };
 
             // check if there is a cookie or hash before proceeding
             if (!util.hasCookie(settings.cookieName) || util.hashExists(settings.forceHash)) {
