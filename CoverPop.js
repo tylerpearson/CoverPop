@@ -25,6 +25,9 @@
             // close if someone clicks an element with this class and continue default action
             closeClassDefault: 'CoverPop-close-go',
 
+            // set class name added to HTML element when CoverPop is opened
+            openClassDefault: 'CoverPop-open',
+
             // change the cookie name
             cookieName: '_CoverPop',
 
@@ -196,7 +199,7 @@
             return;
         }
 
-        util.addClass($el.html, 'CoverPop-open');
+        util.addClass($el.html, settings.openClassDefault);
 
         // bind close events and prevent default event
         if ($el.closeClassNoDefaultEls.length > 0) {
@@ -227,7 +230,7 @@
     };
 
     CoverPop.close = function(e) {
-        util.removeClass($el.html, 'CoverPop-open');
+        util.removeClass($el.html, settings.openClassDefault);
         util.setCookie(settings.cookieName, settings.expires);
 
         // unbind escape detection to document
