@@ -1,8 +1,8 @@
 /*!
- * CoverPop 2.5.0
+ * CoverPop 2.5.1
  * http://coverpopjs.com
  *
- * Copyright (c) 2014 Tyler Pearson
+ * Copyright (c) 2015 Tyler Pearson
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 
