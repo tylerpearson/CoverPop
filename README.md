@@ -58,6 +58,7 @@ CoverPop.start({
     expires:             30,                     // duration (in days) before it pops up again
     closeClassNoDefault: 'CoverPop-close',       // close if someone clicks an element with this class and prevent default action
     closeClassDefault:   'CoverPop-close-go',    // close if someone clicks an element with this class and continue default action
+    openClassDefault:    'CoverPop-open',        // set class name added to HTML element when CoverPop is opened
     cookieName:          '_CoverPop',            // to change the plugin cookie name
     onPopUpOpen:         function() {},          // on popup open callback function
     onPopUpClose:        function() {},          // on popup close callback function
