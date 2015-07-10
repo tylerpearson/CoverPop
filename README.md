@@ -8,7 +8,7 @@ CoverPop is modal splash page plugin that is easily styleable.
 
 ## Demo
 
-[View Demo](http://tylerpearson.github.io/CoverPop/)
+[View Demo](http://coverpopjs.com/demo/default)
 
 ## Usage
 
