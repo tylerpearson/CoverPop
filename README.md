@@ -2,14 +2,6 @@
 
 CoverPop is modal splash page plugin that is easily styleable.
 
-## Website
-
-[View Website](http://coverpopjs.com)
-
-## Demo
-
-[View Demo](http://coverpopjs.com/demo/default)
-
 ## Usage
 
 If you are trying to show up a lightbox popup similar first time visitors that is easily styleable and has cookie integration, this is for you.
