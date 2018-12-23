@@ -1,6 +1,6 @@
 **Note: This is no longer maintained.**
 
-=== 
+-----------
 
 # CoverPop
 
