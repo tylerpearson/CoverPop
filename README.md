@@ -1,3 +1,7 @@
+**Note: This is no longer maintained.**
+
+=== 
+
 # CoverPop
 
 CoverPop is modal splash page plugin that is easily styleable.
